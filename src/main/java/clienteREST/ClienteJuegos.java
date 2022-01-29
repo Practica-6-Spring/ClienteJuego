@@ -131,7 +131,7 @@ public class ClienteJuegos {
 
 			case 12:
 				seguir = false;
-				// ObtenerCompanyLoc(cliente, cuerpo);
+				ObtenerCompanyLoc(cliente, cuerpo);
 				break;
 
 			default:
@@ -143,10 +143,11 @@ public class ClienteJuegos {
 
 	}
 
-	private static void ObtenerCompanyLoc(CloseableHttpClient cliente, String cuerpo)
-			throws IOException, ParseException {
+	private static void ObtenerCompanyLoc(CloseableHttpClient cliente, String cuerpo) throws IOException, ParseException {
 		// TODO Auto-generated method stub
-		respuesta = cliente.execute(get);
+		
+		//PREGUNTAR SI PETA PORQUE LA URL NO ESTÁ IGUAL QUE EN COMPANY CONTROLLER
+		respuesta = cliente.execute(get2);
 		entidad = respuesta.getEntity();
 		cuerpo = EntityUtils.toString(entidad);
 		boolean companyComprobada = false;
