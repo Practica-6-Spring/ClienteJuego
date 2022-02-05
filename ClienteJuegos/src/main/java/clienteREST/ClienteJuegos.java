@@ -32,6 +32,8 @@ import com.google.gson.Gson;
 import excepciones.outOfBounds;
 
 public class ClienteJuegos {
+	
+	//ACTUALIZADO DIA 05/02
 
 //primero se crea el cliente, después hacemos la petición, que devolverá una respuesta, y la almacenaremos en una entidad para después 
 // obtener el cuerpo e imprimirlo por pantlla
@@ -158,13 +160,15 @@ public class ClienteJuegos {
 		cuerpo = EntityUtils.toString(entidad);
 
 		Company[] listaCompanies = gson.fromJson(cuerpo, Company[].class);
-
+		if (listaCompanies == null) {
+			System.out.println("La localización que buscas no existe");
+		} else {
 		for (int i = 0; i < listaCompanies.length; i++) {
-
+		
 			System.out.println("id: " + listaCompanies[i].getId() + " Nombre: " + listaCompanies[i].getNombre()
 					+ " Localización: " + listaCompanies[i].getLocalizacion());
 		}
-
+		}
 		Menu(opcion, seguir);
 	}
 
@@ -551,7 +555,7 @@ public class ClienteJuegos {
 		Videojuego[] listaJuegos = gson.fromJson(cuerpo, Videojuego[].class);
 
 		if (listaJuegos == null) {
-			System.out.println("La plataforma que buscas no existe o no tiene videojuegos");
+			System.out.println("La compañía que buscas no existe o no tiene videojuegos");
 		} else {
 			for (int i = 0; i < listaJuegos.length; i++) {
 
@@ -559,8 +563,9 @@ public class ClienteJuegos {
 
 			}
 
-			Menu(opcion, seguir);
+		
 		}
+		Menu(opcion, seguir);
 	}
 
 	public static void ObtenerJuegoPorId(String cuerpo, HttpEntity entidad) throws IOException, ParseException {
